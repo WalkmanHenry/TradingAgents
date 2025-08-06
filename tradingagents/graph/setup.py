@@ -27,6 +27,7 @@ class GraphSetup:
         invest_judge_memory,
         risk_manager_memory,
         conditional_logic: ConditionalLogic,
+        role_llms: Dict[str, ChatOpenAI] | None = None,
     ):
         """Initialize with required components."""
         self.quick_thinking_llm = quick_thinking_llm
@@ -39,6 +40,7 @@ class GraphSetup:
         self.invest_judge_memory = invest_judge_memory
         self.risk_manager_memory = risk_manager_memory
         self.conditional_logic = conditional_logic
+        self.role_llms = role_llms or {}
 
     def setup_graph(
         self, selected_analysts=["market", "social", "news", "fundamentals"]
@@ -62,50 +64,67 @@ class GraphSetup:
 
         if "market" in selected_analysts:
             analyst_nodes["market"] = create_market_analyst(
-                self.quick_thinking_llm, self.toolkit
+                self.role_llms.get("market_analyst", self.quick_thinking_llm),
+                self.toolkit,
             )
             delete_nodes["market"] = create_msg_delete()
             tool_nodes["market"] = self.tool_nodes["market"]
 
         if "social" in selected_analysts:
             analyst_nodes["social"] = create_social_media_analyst(
-                self.quick_thinking_llm, self.toolkit
+                self.role_llms.get("social_analyst", self.quick_thinking_llm),
+                self.toolkit,
             )
             delete_nodes["social"] = create_msg_delete()
             tool_nodes["social"] = self.tool_nodes["social"]
 
         if "news" in selected_analysts:
             analyst_nodes["news"] = create_news_analyst(
-                self.quick_thinking_llm, self.toolkit
+                self.role_llms.get("news_analyst", self.quick_thinking_llm),
+                self.toolkit,
             )
             delete_nodes["news"] = create_msg_delete()
             tool_nodes["news"] = self.tool_nodes["news"]
 
         if "fundamentals" in selected_analysts:
             analyst_nodes["fundamentals"] = create_fundamentals_analyst(
-                self.quick_thinking_llm, self.toolkit
+                self.role_llms.get("fundamentals_analyst", self.quick_thinking_llm),
+                self.toolkit,
             )
             delete_nodes["fundamentals"] = create_msg_delete()
             tool_nodes["fundamentals"] = self.tool_nodes["fundamentals"]
 
         # Create researcher and manager nodes
         bull_researcher_node = create_bull_researcher(
-            self.quick_thinking_llm, self.bull_memory
+            self.role_llms.get("bull_researcher", self.quick_thinking_llm),
+            self.bull_memory,
         )
         bear_researcher_node = create_bear_researcher(
-            self.quick_thinking_llm, self.bear_memory
+            self.role_llms.get("bear_researcher", self.quick_thinking_llm),
+            self.bear_memory,
         )
         research_manager_node = create_research_manager(
-            self.deep_thinking_llm, self.invest_judge_memory
+            self.role_llms.get("research_manager", self.deep_thinking_llm),
+            self.invest_judge_memory,
         )
-        trader_node = create_trader(self.quick_thinking_llm, self.trader_memory)
+        trader_node = create_trader(
+            self.role_llms.get("trader", self.quick_thinking_llm),
+            self.trader_memory,
+        )
 
         # Create risk analysis nodes
-        risky_analyst = create_risky_debator(self.quick_thinking_llm)
-        neutral_analyst = create_neutral_debator(self.quick_thinking_llm)
-        safe_analyst = create_safe_debator(self.quick_thinking_llm)
+        risky_analyst = create_risky_debator(
+            self.role_llms.get("risky_analyst", self.quick_thinking_llm)
+        )
+        neutral_analyst = create_neutral_debator(
+            self.role_llms.get("neutral_analyst", self.quick_thinking_llm)
+        )
+        safe_analyst = create_safe_debator(
+            self.role_llms.get("safe_analyst", self.quick_thinking_llm)
+        )
         risk_manager_node = create_risk_manager(
-            self.deep_thinking_llm, self.risk_manager_memory
+            self.role_llms.get("risk_manager", self.deep_thinking_llm),
+            self.risk_manager_memory,
         )
 
         # Create workflow

@@ -124,6 +124,13 @@ You will need the OpenAI API for all the agents.
 export OPENAI_API_KEY=$YOUR_OPENAI_API_KEY
 ```
 
+To synthesize audio responses via SiliconFlow, provide your SiliconFlow API key and update the configuration accordingly.
+```bash
+export SILICONFLOW_API_KEY=$YOUR_SILICONFLOW_API_KEY
+```
+
+Each role can be assigned a specific language model by editing the `role_llms` section in `default_config.py`. Speech models can also be overridden per role using the `role_speech_models` field.
+
 ### CLI Usage
 
 You can also try out the CLI directly by running:

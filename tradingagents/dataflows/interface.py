@@ -9,6 +9,7 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 import json
 import os
+import time
 import pandas as pd
 from tqdm import tqdm
 import yfinance as yf
@@ -735,6 +736,36 @@ def get_stock_news_openai(ticker, curr_date):
     )
 
     return response.output[1].content[0].text
+
+
+def synthesize_speech(text, role="default"):
+    """Generate speech audio using SiliconFlow compatible API.
+
+    Args:
+        text (str): Text to convert to speech.
+        role (str): Role requesting speech, used for model override.
+
+    Returns:
+        str: Path to the generated audio file.
+    """
+
+    config = get_config()
+    model = config.get("speech_model")
+    model = config.get("role_speech_models", {}).get(role, model)
+    client = OpenAI(base_url=config.get("speech_backend_url", config["backend_url"]))
+
+    response = client.audio.speech.create(
+        model=model,
+        voice="default",
+        input=text,
+    )
+
+    out_dir = config.get("results_dir", ".")
+    os.makedirs(out_dir, exist_ok=True)
+    file_path = os.path.join(out_dir, f"{role}_speech_{int(time.time())}.mp3")
+    with open(file_path, "wb") as f:
+        f.write(response.read())
+    return file_path
 
 
 def get_global_news_openai(curr_date):
