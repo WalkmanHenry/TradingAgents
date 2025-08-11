@@ -12,24 +12,24 @@
 </div>
 
 <div align="center">
-  <!-- Keep these links. Translations will automatically update with the README. -->
-  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=de">Deutsch</a> | 
-  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=es">Español</a> | 
-  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=fr">français</a> | 
-  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=ja">日本語</a> | 
-  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=ko">한국어</a> | 
-  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=pt">Português</a> | 
-  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=ru">Русский</a> | 
-  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=zh">中文</a>
+  <!-- 请保留以下链接，readme-i18n 会自动生成翻译版本 -->
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=de">Deutsch</a> |
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=es">Español</a> |
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=fr">français</a> |
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=ja">日本語</a> |
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=ko">한국어</a> |
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=pt">Português</a> |
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=ru">Русский</a> |
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=en">English</a>
 </div>
 
 ---
 
-# TradingAgents: Multi-Agents LLM Financial Trading Framework 
+# TradingAgents：多智能体 LLM 金融交易框架
 
-> 🎉 **TradingAgents** officially released! We have received numerous inquiries about the work, and we would like to express our thanks for the enthusiasm in our community.
+> 🎉 **TradingAgents** 正式发布！非常感谢社区对我们的关注与支持。
 >
-> So we decided to fully open-source the framework. Looking forward to building impactful projects with you!
+> 我们决定完全开源这一框架，期待与您一起打造有影响力的项目。
 
 <div align="center">
 <a href="https://www.star-history.com/#TauricResearch/TradingAgents&Date">
@@ -43,107 +43,104 @@
 
 <div align="center">
 
-🚀 [TradingAgents](#tradingagents-framework) | ⚡ [Installation & CLI](#installation-and-cli) | 🎬 [Demo](https://www.youtube.com/watch?v=90gr5lwjIho) | 📦 [Package Usage](#tradingagents-package) | 🤝 [Contributing](#contributing) | 📄 [Citation](#citation)
+🚀 [TradingAgents](#tradingagents框架) | ⚡ [安装与命令行](#安装与命令行) | 🎬 [演示](https://www.youtube.com/watch?v=90gr5lwjIho) | 📦 [Python 包使用](#tradingagents-包) | 🤝 [参与贡献](#参与贡献) | 📄 [引用](#引用)
 
 </div>
 
-## TradingAgents Framework
+## TradingAgents 框架
 
-TradingAgents is a multi-agent trading framework that mirrors the dynamics of real-world trading firms. By deploying specialized LLM-powered agents: from fundamental analysts, sentiment experts, and technical analysts, to trader, risk management team, the platform collaboratively evaluates market conditions and informs trading decisions. Moreover, these agents engage in dynamic discussions to pinpoint the optimal strategy.
+TradingAgents 是一个模拟真实交易公司的多智能体交易框架。我们部署了多个专用的 LLM 智能体：包括基本面分析师、情绪分析师、新闻分析师、技术分析师、交易员以及风险管理团队等。它们协作评估市场状况并输出交易决策，同时智能体之间还会进行讨论以寻找最优策略。
 
 <p align="center">
   <img src="assets/schema.png" style="width: 100%; height: auto;">
 </p>
 
-> TradingAgents framework is designed for research purposes. Trading performance may vary based on many factors, including the chosen backbone language models, model temperature, trading periods, the quality of data, and other non-deterministic factors. [It is not intended as financial, investment, or trading advice.](https://tauric.ai/disclaimer/)
+> TradingAgents 主要用于研究目的。其交易表现可能受所选底座模型、温度、回测期间、数据质量等因素影响，并具有非确定性特征。 [本项目不构成任何投资或交易建议。](https://tauric.ai/disclaimer/)
 
-Our framework decomposes complex trading tasks into specialized roles. This ensures the system achieves a robust, scalable approach to market analysis and decision-making.
+该框架将复杂的交易任务拆分为多个角色，使系统能够以更稳健、可扩展的方式进行市场分析和决策。
 
-### Analyst Team
-- Fundamentals Analyst: Evaluates company financials and performance metrics, identifying intrinsic values and potential red flags.
-- Sentiment Analyst: Analyzes social media and public sentiment using sentiment scoring algorithms to gauge short-term market mood.
-- News Analyst: Monitors global news and macroeconomic indicators, interpreting the impact of events on market conditions.
-- Technical Analyst: Utilizes technical indicators (like MACD and RSI) to detect trading patterns and forecast price movements.
+### 分析师团队
+- **基本面分析师**：评估公司财务和经营指标，识别内在价值与潜在风险。
+- **情绪分析师**：通过社交媒体与舆情数据分析市场情绪，判断短期走势。
+- **新闻分析师**：监控全球新闻及宏观经济指标，评估事件对市场的影响。
+- **技术分析师**：利用 MACD、RSI 等技术指标识别交易模式并预测价格走势。
 
 <p align="center">
   <img src="assets/analyst.png" width="100%" style="display: inline-block; margin: 0 2%;">
 </p>
 
-### Researcher Team
-- Comprises both bullish and bearish researchers who critically assess the insights provided by the Analyst Team. Through structured debates, they balance potential gains against inherent risks.
+### 研究团队
+由看多与看空的研究员组成，对分析师团队的观点进行审视。通过结构化辩论权衡收益与风险。
 
 <p align="center">
   <img src="assets/researcher.png" width="70%" style="display: inline-block; margin: 0 2%;">
 </p>
 
-### Trader Agent
-- Composes reports from the analysts and researchers to make informed trading decisions. It determines the timing and magnitude of trades based on comprehensive market insights.
+### 交易员
+整合分析师与研究员的报告，做出最终交易决策，并决定交易时间与规模。
 
 <p align="center">
   <img src="assets/trader.png" width="70%" style="display: inline-block; margin: 0 2%;">
 </p>
 
-### Risk Management and Portfolio Manager
-- Continuously evaluates portfolio risk by assessing market volatility, liquidity, and other risk factors. The risk management team evaluates and adjusts trading strategies, providing assessment reports to the Portfolio Manager for final decision.
-- The Portfolio Manager approves/rejects the transaction proposal. If approved, the order will be sent to the simulated exchange and executed.
+### 风险管理与投资组合经理
+- 持续评估市场波动性、流动性等风险因素，调整交易策略并向投资组合经理提交评估报告。
+- 投资组合经理负责批准或拒绝交易提案，若通过则会将订单发送到模拟交易所执行。
 
 <p align="center">
   <img src="assets/risk.png" width="70%" style="display: inline-block; margin: 0 2%;">
 </p>
 
-## Installation and CLI
+## 安装与命令行
 
-### Installation
+### 安装
 
-Clone TradingAgents:
+克隆仓库：
 ```bash
 git clone https://github.com/TauricResearch/TradingAgents.git
-cd TradingAgents
 ```
 
-Create a virtual environment in any of your favorite environment managers:
+创建并激活 Conda 环境：
 ```bash
 conda create -n tradingagents python=3.13
 conda activate tradingagents
 ```
 
-Install dependencies:
+安装依赖：
 ```bash
 pip install -r requirements.txt
 ```
 
-### Required APIs
+### 必需的 API
 
-You will also need the FinnHub API for financial data. All of our code is implemented with the free tier.
+为了获取金融数据，需要 FinnHub API（免费额度即可）：
 ```bash
 export FINNHUB_API_KEY=$YOUR_FINNHUB_API_KEY
 ```
 
-You will need the OpenAI API for all the agents.
+所有智能体默认使用 OpenAI API：
 ```bash
 export OPENAI_API_KEY=$YOUR_OPENAI_API_KEY
 ```
 
-To synthesize audio responses via SiliconFlow, provide your SiliconFlow API key and update the configuration accordingly.
+若需通过 SiliconFlow 合成语音回复，请设置 API Key 并在配置中指定模型：
 ```bash
 export SILICONFLOW_API_KEY=$YOUR_SILICONFLOW_API_KEY
 ```
 
-Each role can be assigned a specific language model by editing the `role_llms` section in `default_config.py`. Speech models can also be overridden per role using the `role_speech_models` field.
+可在 `default_config.py` 中通过 `role_llms` 为每个角色指定语言模型，也可在 `role_speech_models` 中为角色指定语音模型。
 
-### CLI Usage
+### 命令行使用
 
-You can also try out the CLI directly by running:
+运行 CLI：
 ```bash
 python -m cli.main
 ```
-You will see a screen where you can select your desired tickers, date, LLMs, research depth, etc.
+按照提示选择股票代码、日期、模型与研究深度等参数。程序运行后可实时查看各智能体的输出与进度。
 
 <p align="center">
   <img src="assets/cli/cli_init.png" width="100%" style="display: inline-block; margin: 0 2%;">
 </p>
-
-An interface will appear showing results as they load, letting you track the agent's progress as it runs.
 
 <p align="center">
   <img src="assets/cli/cli_news.png" width="100%" style="display: inline-block; margin: 0 2%;">
@@ -153,15 +150,15 @@ An interface will appear showing results as they load, letting you track the age
   <img src="assets/cli/cli_transaction.png" width="100%" style="display: inline-block; margin: 0 2%;">
 </p>
 
-## TradingAgents Package
+## TradingAgents 包
 
-### Implementation Details
+### 实现细节
 
-We built TradingAgents with LangGraph to ensure flexibility and modularity. We utilize `o1-preview` and `gpt-4o` as our deep thinking and fast thinking LLMs for our experiments. However, for testing purposes, we recommend you use `o4-mini` and `gpt-4.1-mini` to save on costs as our framework makes **lots of** API calls.
+TradingAgents 基于 LangGraph 构建，强调灵活与模块化。实验中我们使用 `o1-preview` 与 `gpt-4o` 作为深度与快速思考模型。若仅测试，可选用 `o4-mini` 与 `gpt-4.1-mini` 以降低成本，因为框架会调用大量 API。
 
-### Python Usage
+### Python 使用示例
 
-To use TradingAgents inside your code, you can import the `tradingagents` module and initialize a `TradingAgentsGraph()` object. The `.propagate()` function will return a decision. You can run `main.py`, here's also a quick example:
+在代码中可直接导入 `tradingagents` 模块并初始化 `TradingAgentsGraph()`：
 
 ```python
 from tradingagents.graph.trading_graph import TradingAgentsGraph
@@ -169,52 +166,51 @@ from tradingagents.default_config import DEFAULT_CONFIG
 
 ta = TradingAgentsGraph(debug=True, config=DEFAULT_CONFIG.copy())
 
-# forward propagate
+# 前向传播
 _, decision = ta.propagate("NVDA", "2024-05-10")
 print(decision)
 ```
 
-You can also adjust the default configuration to set your own choice of LLMs, debate rounds, etc.
+你也可以通过修改默认配置选择不同模型、调整辩论轮数等：
 
 ```python
 from tradingagents.graph.trading_graph import TradingAgentsGraph
 from tradingagents.default_config import DEFAULT_CONFIG
 
-# Create a custom config
+# 自定义配置
 config = DEFAULT_CONFIG.copy()
-config["deep_think_llm"] = "gpt-4.1-nano"  # Use a different model
-config["quick_think_llm"] = "gpt-4.1-nano"  # Use a different model
-config["max_debate_rounds"] = 1  # Increase debate rounds
-config["online_tools"] = True # Use online tools or cached data
+config["deep_think_llm"] = "gpt-4.1-nano"   # 更换模型
+config["quick_think_llm"] = "gpt-4.1-nano"  # 更换模型
+config["max_debate_rounds"] = 1            # 辩论轮数
+config["online_tools"] = True              # 使用在线工具
 
-# Initialize with custom config
 ta = TradingAgentsGraph(debug=True, config=config)
 
-# forward propagate
 _, decision = ta.propagate("NVDA", "2024-05-10")
 print(decision)
 ```
 
-> For `online_tools`, we recommend enabling them for experimentation, as they provide access to real-time data. The agents' offline tools rely on cached data from our **Tauric TradingDB**, a curated dataset we use for backtesting. We're currently in the process of refining this dataset, and we plan to release it soon alongside our upcoming projects. Stay tuned!
+> 若将 `online_tools` 设为 True，可获取实时数据。离线工具依赖我们整理的 **Tauric TradingDB** 缓存数据，目前仍在完善中，未来会随后续项目一同发布。
 
-You can view the full list of configurations in `tradingagents/default_config.py`.
+更多配置项请参考 `tradingagents/default_config.py`。
 
-## Contributing
+## 参与贡献
 
-We welcome contributions from the community! Whether it's fixing a bug, improving documentation, or suggesting a new feature, your input helps make this project better. If you are interested in this line of research, please consider joining our open-source financial AI research community [Tauric Research](https://tauric.ai/).
+欢迎社区贡献！无论是修复 bug、改进文档还是提出新功能，您的帮助都会让项目更好。如果你对该方向感兴趣，欢迎加入我们的开源金融 AI 社区 [Tauric Research](https://tauric.ai/)。
 
-## Citation
+## 引用
 
-Please reference our work if you find *TradingAgents* provides you with some help :)
+如果 TradingAgents 对您的研究或项目有所帮助，请引用我们的论文：
 
 ```
 @misc{xiao2025tradingagentsmultiagentsllmfinancial,
-      title={TradingAgents: Multi-Agents LLM Financial Trading Framework}, 
+      title={TradingAgents: Multi-Agents LLM Financial Trading Framework},
       author={Yijia Xiao and Edward Sun and Di Luo and Wei Wang},
       year={2025},
       eprint={2412.20138},
       archivePrefix={arXiv},
       primaryClass={q-fin.TR},
-      url={https://arxiv.org/abs/2412.20138}, 
+      url={https://arxiv.org/abs/2412.20138},
 }
 ```
+
