@@ -58,17 +58,54 @@ class TradingAgentsGraph:
         )
 
         # Initialize LLMs
-        if self.config["llm_provider"].lower() == "openai" or self.config["llm_provider"] == "ollama" or self.config["llm_provider"] == "openrouter":
-            self.deep_thinking_llm = ChatOpenAI(model=self.config["deep_think_llm"], base_url=self.config["backend_url"])
-            self.quick_thinking_llm = ChatOpenAI(model=self.config["quick_think_llm"], base_url=self.config["backend_url"])
-        elif self.config["llm_provider"].lower() == "anthropic":
-            self.deep_thinking_llm = ChatAnthropic(model=self.config["deep_think_llm"], base_url=self.config["backend_url"])
-            self.quick_thinking_llm = ChatAnthropic(model=self.config["quick_think_llm"], base_url=self.config["backend_url"])
-        elif self.config["llm_provider"].lower() == "google":
-            self.deep_thinking_llm = ChatGoogleGenerativeAI(model=self.config["deep_think_llm"])
-            self.quick_thinking_llm = ChatGoogleGenerativeAI(model=self.config["quick_think_llm"])
+        provider = self.config["llm_provider"].lower()
+        if (
+            provider == "openai"
+            or provider == "ollama"
+            or provider == "openrouter"
+            or provider == "siliconflow"
+        ):
+            self.deep_thinking_llm = ChatOpenAI(
+                model=self.config["deep_think_llm"],
+                base_url=self.config["backend_url"],
+            )
+            self.quick_thinking_llm = ChatOpenAI(
+                model=self.config["quick_think_llm"],
+                base_url=self.config["backend_url"],
+            )
+        elif provider == "anthropic":
+            self.deep_thinking_llm = ChatAnthropic(
+                model=self.config["deep_think_llm"],
+                base_url=self.config["backend_url"],
+            )
+            self.quick_thinking_llm = ChatAnthropic(
+                model=self.config["quick_think_llm"],
+                base_url=self.config["backend_url"],
+            )
+        elif provider == "google":
+            self.deep_thinking_llm = ChatGoogleGenerativeAI(
+                model=self.config["deep_think_llm"]
+            )
+            self.quick_thinking_llm = ChatGoogleGenerativeAI(
+                model=self.config["quick_think_llm"]
+            )
         else:
             raise ValueError(f"Unsupported LLM provider: {self.config['llm_provider']}")
+
+        # Initialize role-specific LLMs if provided
+        self.role_llms = {}
+        for role, model_name in self.config.get("role_llms", {}).items():
+            if provider == "anthropic":
+                self.role_llms[role] = ChatAnthropic(
+                    model=model_name, base_url=self.config["backend_url"]
+                )
+            elif provider == "google":
+                self.role_llms[role] = ChatGoogleGenerativeAI(model=model_name)
+            else:
+                # Treat SiliconFlow and other OpenAI-compatible providers the same
+                self.role_llms[role] = ChatOpenAI(
+                    model=model_name, base_url=self.config["backend_url"]
+                )
         
         self.toolkit = Toolkit(config=self.config)
 
@@ -95,6 +132,7 @@ class TradingAgentsGraph:
             self.invest_judge_memory,
             self.risk_manager_memory,
             self.conditional_logic,
+            role_llms=self.role_llms,
         )
 
         self.propagator = Propagator()

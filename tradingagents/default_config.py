@@ -13,6 +13,12 @@ DEFAULT_CONFIG = {
     "deep_think_llm": "o4-mini",
     "quick_think_llm": "gpt-4o-mini",
     "backend_url": "https://api.openai.com/v1",
+    # Speech model settings (SiliconFlow compatible)
+    "speech_backend_url": "https://api.siliconflow.cn/v1",
+    "speech_model": "siliconflow-voice",
+    # Per-role model overrides
+    "role_llms": {},
+    "role_speech_models": {},
     # Debate and discussion settings
     "max_debate_rounds": 1,
     "max_risk_discuss_rounds": 1,

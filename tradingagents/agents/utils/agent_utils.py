@@ -417,3 +417,20 @@ class Toolkit:
         )
 
         return openai_fundamentals_results
+
+    @staticmethod
+    @tool
+    def text_to_speech(
+        role: Annotated[str, "role name for selecting speech model"],
+        text: Annotated[str, "text content to synthesize"],
+    ) -> str:
+        """Generate speech audio using SiliconFlow speech models.
+
+        Args:
+            role (str): Role requesting speech; selects role-specific model if configured.
+            text (str): Text content to convert to speech.
+        Returns:
+            str: Path to the generated audio file.
+        """
+
+        return interface.synthesize_speech(text, role)
